@@ -22,15 +22,15 @@ janela = tk.Tk()
 janela.title("Calculadora de Fatorial")
 janela.geometry("300x200")
 
-tk.Label(janela, text="Digite um número:").grid(row=0, column=0)
+tk.Label(janela, text="Digite um número:").grid(row=0, column=0, padx=5, pady=5)
 
 entrada = tk.Entry(janela)
-entrada.grid(row=0, column=1)
+entrada.grid(row=0, column=1, padx=5, pady=5)
 
 botao = tk.Button(janela, text="Calcular", command=calcular)
-botao.grid(row=1, column=0)
+botao.grid(row=1, column=0, padx=5, pady=5)
 
 resultado = tk.Label(janela, text="")
-resultado.grid(row=1, column=1)
+resultado.grid(row=1, column=1, padx=5, pady=5)
 
 janela.mainloop()
