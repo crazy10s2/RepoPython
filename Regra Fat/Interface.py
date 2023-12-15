@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter.font import Font
 
 class Fatorial:
     def __init__(self, num):
@@ -22,7 +23,7 @@ janela = tk.Tk()
 janela.title("Calculadora de Fatorial")
 janela.geometry("300x200")
 
-tk.Label(janela, text="Digite um número:").grid(row=0, column=0, padx=5, pady=5)
+tk.Label(janela, text="Digite um número:", font=Font(family="Times New Roman", size=12)).grid(row=0, column=0, padx=5, pady=5)
 
 entrada = tk.Entry(janela)
 entrada.grid(row=0, column=1, padx=5, pady=5)
@@ -30,7 +31,7 @@ entrada.grid(row=0, column=1, padx=5, pady=5)
 botao = tk.Button(janela, text="Calcular", command=calcular)
 botao.grid(row=1, column=0, padx=5, pady=5)
 
-resultado = tk.Label(janela, text="")
+resultado = tk.Label(janela, text="", font=Font(family="Times New Roman", size=12))
 resultado.grid(row=1, column=1, padx=5, pady=5)
 
 janela.mainloop()
