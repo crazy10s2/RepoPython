@@ -6,7 +6,7 @@ frame = tk.Tk()
 frame.geometry('350x300')
 frame.resizable(False, False)
 frame.title('Exemplo radio button')
-# frame.tk.call('wm', 'iconphoto', frame._w, tk.PhotoImage(file = 'python-logo-only.png'))
+frame.tk.call('wm', 'iconphoto', frame._w, tk.PhotoImage(file = 'python-logo-only.png'))
 
 def mostrarEscolha():
     showinfo(title = 'Resultado', message = f'Você escolheu {tam_selecionado.get()}')
