@@ -1,11 +1,12 @@
-class CurrencyConverter:
-    def __init__(self):
-        self.usd_rate = 5.50
+class Fatorial:
+    def _init_(self, num):
+        self.num = num
 
-    def convert(self, real):
-        return real / self.usd_rate
-
-converter = CurrencyConverter()
-real = 100
-dollar = converter.convert(real)
-print(f"{real:.2f} Reais equivalem a {dollar:.2f} Dólares.")
+    def calcular_fatorial(self):
+        if self.num < 0:
+            return
+        else:
+            fatorial = 1
+            for i in range(1, self.num + 1):
+                fatorial *= i
+            return fatorial
