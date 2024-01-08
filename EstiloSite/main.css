@@ -4,8 +4,9 @@
     margin: 0;
     padding: 0;
 }
+
 body > header{
-    background-color: #544c4c;
+    background-color: #544C4C;
     padding: 16px 0;
     color: azure;
 }
@@ -29,8 +30,8 @@ header li a{
 }
 
 .container{
-        width: 1366px;
-        margin: 0 auto;
+    width: 1366px;
+    margin: 0 auto;
 }
 
 .articles{
@@ -40,7 +41,8 @@ header li a{
 }
 
 .articles article img{
-    height: 180px;
+    /* height: 180px; */
+    width: 100%;
 }
 
 .articles article{
@@ -53,12 +55,12 @@ section {
 
 .articles article h3{
     margin-top: 8px;
+    margin-bottom: 8px;
 }
-
 section h2, .articles article{
     margin-bottom: 16px;
 }
-.articles article p, .articles article{
+.articles article p, .articles article a{
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -84,7 +86,7 @@ section h2{
 }
 
 #sports{
-    background-color: rgb(58, 90, 1, 0.3);
+    background-color: rgba(58, 90, 1, 0.3);
 }
 
 #economy{
@@ -95,6 +97,6 @@ section h2{
     background-color: rgba(58, 90, 1, 1);
 }
 
-#economy{
-    background-color: rgb(210, 8, 196);
+#economy .articles article a{
+    background-color: rgba(141, 25, 25, 1);
 }
