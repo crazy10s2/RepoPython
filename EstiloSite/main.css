@@ -3,6 +3,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body > header{
@@ -53,15 +54,21 @@ section {
     padding: 16px 0;
 }
 
+h1{
+    font-family: 'Lemon', serif;
+}
+
 .articles article h3{
+    font-family: 'Lemon', serif;
     margin-top: 8px;
     margin-bottom: 8px;
 }
 section h2, .articles article{
+    font-family: 'Lemon', serif;
     margin-bottom: 16px;
 }
 .articles article p, .articles article a{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Tektur', sans-serif;
 }
 
 .articles article a{
@@ -99,4 +106,26 @@ section h2{
 
 #economy .articles article a{
     background-color: rgba(141, 25, 25, 1);
+}
+
+@media screen and (max-width: 640px){
+    .container{
+        background-color: red;
+    }
+
+    .articles article{
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 641px) and (max-width: 1365px) {
+    .container{
+        background-color: blue;
+    }
+}
+
+@media screen and (orientation:portrait) {
+    .container{
+        background-color: green;
+    }
 }
