@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Reconhecimento de Voz para Deficientes Auditivos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0 0 1em;
+            color: #007bff;
+        }
+        p {
+            margin: 0 0 1.5em;
+        }
+        button {
+            display: inline-block;
+            padding: 0.5em 1em;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 0.25em;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #0069d9;
+            transform: scale(1.1);
+        }
+        #output {
+            margin: 1.5em 0;
+            padding: 1em;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            background-color: #f5f5f5;
+            border: 2px solid #007bff;
+            border-radius: 0.25em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reconhecimento de Voz para Deficientes Auditivos</h1>
+    <p>Este é um sistema de reconhecimento de voz para deficientes auditivos que utiliza técnicas de aprendizado de máquina e programação de software para identificar as principais dificuldades enfrentadas pelas pessoas com deficiência auditiva ao se comunicar, e implementar um sistema eficiente e preciso que possa ajudar essas pessoas a se comunicar mais facilmente.</p>
+    <button id="start-record-btn">Iniciar Gravação</button>
+    <button id="stop-record-btn" disabled>Parar Gravação</button>
+    <div id="output"></div>
+    <script>
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'pt-BR';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        document.querySelector('#start-record-btn').addEventListener('click', () => {
+            recognition.start();
+            document.querySelector('#start-record-btn').disabled = true;
+            document.querySelector('#stop-record-btn').disabled = false;
+        });
+
+        document.querySelector('#stop-record-btn').addEventListener('click', () => {
+            recognition.stop();
+            document.querySelector('#start-record-btn').disabled = false;
+            document.querySelector('#stop-record-btn').disabled = true;
+        });
+
+        recognition.addEventListener('result', (e) => {
+            let last = e.results.length - 1;
+            let text = e.results[last][0].transcript;
+            console.log('Confidence: ' + e.results[0][0].confidence);
+            document.querySelector('#output').textContent = text;
+            if (text.includes('abrir')) {
+                window.open('https://www.bing.com');
+            } else if (text.includes('pesquisar')) {
+                let query = text.replace('pesquisar', '').trim();
+                window.open('https://www.bing.com/search?q=' + query);
+            } else if (text.includes('fechar')) {
+                window.close();
+            }
+        });
+
+        recognition.addEventListener('speechend', () => {
+            recognition.stop();
+            document.querySelector('#start-record-btn').disabled = false;
+            document.querySelector('#stop-record-btn').disabled = true;
+        });
+
+        recognition.addEventListener('error', (e) => {
+            document.querySelector('#output').textContent = 'Erro: ' + e.error;
+            document.querySelector('#start-record-btn').disabled = false;
+            document.querySelector('#stop-record-btn').disabled = true;
+        });
+    </script>
+</body>
+</html>
