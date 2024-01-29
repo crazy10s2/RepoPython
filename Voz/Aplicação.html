@@ -39,6 +39,10 @@
         main p {
             margin: 0 0 1.5em;
         }
+        main #buttons {
+            display: flex;
+            align-items: center;
+        }
         main button {
             display: inline-flex;
             align-items: center;
@@ -67,6 +71,13 @@
         }
         main button#stop-record-btn:hover {
             background-color: #c82333;
+            transform: scale(1.1);
+        }
+        main button#clear-btn {
+            background-color: #28a745;
+        }
+        main button#clear-btn:hover {
+            background-color: #218838;
             transform: scale(1.1);
         }
         main #output {
@@ -100,12 +111,15 @@
     </header>
     <main>
         <p>Este é um sistema de reconhecimento de voz para deficientes auditivos que utiliza técnicas de aprendizado de máquina e programação de software para identificar as principais dificuldades enfrentadas pelas pessoas com deficiência auditiva ao se comunicar, e implementar um sistema eficiente e preciso que possa ajudar essas pessoas a se comunicar mais facilmente.</p>
-        <button id="start-record-btn"><img src="./microfone.png" alt="Microfone"> Iniciar Gravação</button>
-        <button id="stop-record-btn" disabled><img src="./microfone 2.png" alt="Microfone"> Parar Gravação</button>
+        <div id="buttons">
+            <button id="start-record-btn"><img src="./microfone.png" alt="Microfone"> Iniciar Gravação</button>
+            <button id="stop-record-btn" disabled><img src="./microfone 2.png" alt="Microfone"> Parar Gravação</button>
+            <button id="clear-btn">Limpar Texto</button>
+        </div>
         <div id="output"></div>
     </main>
     <footer>
-        <p>Criado por <strong>Cauã Dias</strong> em <strong>22/01/2024</strong></p>
+        <p>Criado por <strong>Cauã Dias</strong> em <strong>29/01/2024</strong></p>
     </footer>
     <script>
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -116,6 +130,7 @@
 
         const startRecordBtn = document.querySelector('#start-record-btn');
         const stopRecordBtn = document.querySelector('#stop-record-btn');
+        const clearBtn = document.querySelector('#clear-btn');
         const output = document.querySelector('#output');
 
         startRecordBtn.addEventListener('click', () => {
@@ -129,6 +144,12 @@
             startRecordBtn.disabled = false;
             stopRecordBtn.disabled = true;
         });
+
+        clearBtn.addEventListener('click', clearText);
+
+        function clearText() {
+            output.textContent = '';
+        }
 
         recognition.addEventListener('result', (e) => {
             let last = e.results.length - 1;

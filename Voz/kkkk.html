@@ -6,102 +6,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <style>
-        /* Defina o estilo para o cabeçalho */
-        .cabecalho {
-            background-color: lightblue;
-            padding: 20px;
-            text-align: center;
-        }
-        /* Defina o estilo para o título principal */
-        #titulo-principal {
-            color: darkblue;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 36px;
-        }
-        /* Defina o estilo para os parágrafos */
-        .paragrafo {
-            color: black;
+        body {
             font-family: 'Open Sans', sans-serif;
             font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
         }
-        /* Defina o estilo para os botões */
-        .botao {
-            background-color: green;
-            color: white;
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            background-color: #007bff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: #fff;
+        }
+        main {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 1em;
+            background-color: #fff;
+            border-radius: 0.25em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        main p {
+            margin: 0 0 1.5em;
+        }
+        main button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5em 1em;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
             border: none;
-            padding: 10px 20px;
-            margin: 10px;
+            border-radius: 0.25em;
             cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
         }
-        #saida {
-            border: 1px solid black;
-            min-height: 100px;
-            padding: 10px;
+        main button img {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.5em;
+        }
+        main button#start-record-btn:hover {
+            background-color: #0069d9;
+            transform: scale(1.1);
+        }
+        main button#stop-record-btn {
+            background-color: #dc3545;
+        }
+        main button#stop-record-btn:hover {
+            background-color: #c82333;
+            transform: scale(1.1);
+        }
+        main button#clear-btn {
+            background-color: #28a745;
+        }
+        main button#clear-btn:hover {
+            background-color: #218838;
+            transform: scale(1.1);
+        }
+        main #output {
+            margin: 1.5em 0;
+            padding: 1em;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            background-color: #f5f5f5;
+            border: 2px solid #007bff;
+            border-radius: 0.25em;
+        }
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            background-color: #007bff;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+        }
+        footer p {
+            font-size: 0.8em;
+            margin: 0;
+            color: #fff;
         }
     </style>
-    <header class="cabecalho">
-        <h2>Reconhecimento de Voz para Deficientes Auditivos</h2>
-        <p class="paragrafo">Autor: Cauã Dias</p>
-        <p class="paragrafo">Data: 19 de janeiro de 2024</p>
-        <p class="paragrafo">Descrição: Um sistema de reconhecimento de voz para deficientes auditivos que utiliza técnicas de aprendizado de máquina e programação de software.</p>
-    </header>
 </head>
 <body>
-    <h1 id="titulo-principal">Reconhecimento de Voz para Deficientes Auditivos</h1>
-    <p class="paragrafo">Este é um sistema de reconhecimento de voz para deficientes auditivos que utiliza técnicas de aprendizado de máquina e programação de software para identificar as principais dificuldades enfrentadas pelas pessoas com deficiência auditiva ao se comunicar, e implementar um sistema eficiente e preciso que possa ajudar essas pessoas a se comunicar mais facilmente.</p>
-    <button id="start-record-btn">Iniciar Gravação</button>
-    <button id="stop-record-btn" disabled>Parar Gravação</button>
-    <div id="output"></div>
+    <header>
+        <h1>Reconhecimento de Voz para Deficientes Auditivos</h1>
+    </header>
+    <main>
+        <p>Este é um sistema de reconhecimento de voz para deficientes auditivos que utiliza técnicas de aprendizado de máquina e programação de software para identificar as principais dificuldades enfrentadas pelas pessoas com deficiência auditiva ao se comunicar, e implementar um sistema eficiente e preciso que possa ajudar essas pessoas a se comunicar mais facilmente.</p>
+        <button id="start-record-btn"><img src="./microfone.png" alt="Microfone"> Iniciar Gravação</button>
+        <button id="stop-record-btn" disabled><img src="./microfone 2.png" alt="Microfone"> Parar Gravação</button>
+        <button id="clear-btn">Limpar Texto</button>
+        <div id="output"></div>
+    </main>
+    <footer>
+        <p>Criado por <strong>Cauã Dias</strong> em <strong>29/01/2024</strong></p>
+    </footer>
     <script>
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
-recognition.lang = 'pt-BR';
-recognition.interimResults = false;
-recognition.maxAlternatives = 1;
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'pt-BR';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
 
-const startRecordBtn = document.querySelector('#start-record-btn');
-const stopRecordBtn = document.querySelector('#stop-record-btn');
-const output = document.querySelector('#output');
+        const startRecordBtn = document.querySelector('#start-record-btn');
+        const stopRecordBtn = document.querySelector('#stop-record-btn');
+        const clearBtn = document.querySelector('#clear-btn');
+        const output = document.querySelector('#output');
 
-startRecordBtn.addEventListener('click', () => {
-    recognition.start();
-    startRecordBtn.disabled = true;
-    stopRecordBtn.disabled = false;
-});
+        startRecordBtn.addEventListener('click', () => {
+            recognition.start();
+            startRecordBtn.disabled = true;
+            stopRecordBtn.disabled = false;
+        });
 
-stopRecordBtn.addEventListener('click', () => {
-    recognition.stop();
-    startRecordBtn.disabled = false;
-    stopRecordBtn.disabled = true;
-});
+        stopRecordBtn.addEventListener('click', () => {
+            recognition.stop();
+            startRecordBtn.disabled = false;
+            stopRecordBtn.disabled = true;
+        });
 
-recognition.addEventListener('result', (e) => {
-    let last = e.results.length - 1;
-    let text = e.results[last][0].transcript;
-    console.log('Confidence: ' + e.results[0][0].confidence);
-    output.textContent = text;
-    if (text.includes('abrir')) {
-        window.open('https://www.bing.com');
-    } else if (text.includes('pesquisar')) {
-        let query = text.replace('pesquisar', '').trim();
-        window.open('https://www.bing.com/search?q=' + query);
-    } else if (text.includes('fechar')) {
-        window.close();
-    }
-});
+        clearBtn.addEventListener('click', clearText);
 
-recognition.addEventListener('speechend', () => {
-    recognition.stop();
-    startRecordBtn.disabled = false;
-    stopRecordBtn.disabled = true;
-});
+        function clearText() {
+            output.textContent = '';
+        }
 
-recognition.addEventListener('error', (e) => {
-    output.textContent = 'Erro: ' + e.error;
-    startRecordBtn.disabled = false;
-    stopRecordBtn.disabled = true;
-});
+        recognition.addEventListener('result', (e) => {
+            let last = e.results.length - 1;
+            let text = e.results[last][0].transcript;
+            console.log('Confidence: ' + e.results[0][0].confidence);
+            output.textContent = text;
+            if (text.includes('abrir')) {
+                window.open('https://www.bing.com');
+            } else if (text.includes('pesquisar')) {
+                let query = text.replace('pesquisar', '').trim();
+                window.open('https://www.bing.com/search?q=' + query);
+            } else if (text.includes('fechar')) {
+                window.close();
+            }
+        });
 
+        recognition.addEventListener('speechend', () => {
+            recognition.stop();
+            startRecordBtn.disabled = false;
+            stopRecordBtn.disabled = true;
+        });
+
+        recognition.addEventListener('error', (e) => {
+            output.textContent = 'Erro: ' + e.error;
+            startRecordBtn.disabled = false;
+            stopRecordBtn.disabled = true;
+        });
     </script>
 </body>
 </html>
