@@ -20,7 +20,7 @@
             align-items: center;
             justify-content: center;
             height: 80px;
-            background-color: #007bff;
+            background-color: #ff0000; /* cor de fundo vermelha */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         header h1 {
@@ -38,6 +38,10 @@
         }
         main p {
             margin: 0 0 1.5em;
+        }
+        main #buttons {
+            display: flex;
+            align-items: center;
         }
         main button {
             display: inline-flex;
@@ -91,7 +95,7 @@
             align-items: center;
             justify-content: center;
             height: 40px;
-            background-color: #007bff;
+            background-color: #ff0000; /* cor de fundo vermelha */
             box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
         }
         footer p {
@@ -107,9 +111,11 @@
     </header>
     <main>
         <p>Este é um sistema de reconhecimento de voz para deficientes auditivos que utiliza técnicas de aprendizado de máquina e programação de software para identificar as principais dificuldades enfrentadas pelas pessoas com deficiência auditiva ao se comunicar, e implementar um sistema eficiente e preciso que possa ajudar essas pessoas a se comunicar mais facilmente.</p>
-        <button id="start-record-btn"><img src="./microfone.png" alt="Microfone"> Iniciar Gravação</button>
-        <button id="stop-record-btn" disabled><img src="./microfone 2.png" alt="Microfone"> Parar Gravação</button>
-        <button id="clear-btn">Limpar Texto</button>
+        <div id="buttons">
+            <button id="start-record-btn"><img src="./microfone.png" alt="Microfone"> Iniciar Gravação</button>
+            <button id="stop-record-btn" disabled><img src="./microfone 2.png" alt="Microfone"> Parar Gravação</button>
+            <button id="clear-btn">Limpar Texto</button>
+        </div>
         <div id="output"></div>
     </main>
     <footer>
