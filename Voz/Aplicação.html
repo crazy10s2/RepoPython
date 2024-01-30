@@ -4,29 +4,64 @@
     <meta charset="UTF-8">
     <title>Reconhecimento de Voz para Deficientes Auditivos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Roboto', sans-serif;
             font-size: 18px;
             line-height: 1.6;
             color: #333;
             background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
         }
         header {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             height: 80px;
             background-color: #007bff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
-        header h1 {
+        header .logo {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+        header .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        header .logo h1 {
             font-size: 2.5em;
             margin: 0;
             color: #fff;
+        }
+        header .menu {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        header .menu a {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+        header .menu a:hover {
+            background-color: #0069d9;
+        }
+        header .menu a img {
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
         }
         main {
             max-width: 800px;
@@ -90,6 +125,30 @@
             border: 2px solid #007bff;
             border-radius: 0.25em;
         }
+        main .images {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 1.5em 0;
+        }
+        main .images img {
+            width: 48%;
+            height: auto;
+            border-radius: 0.25em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        main .graph {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5em 0;
+        }
+        main .graph img {
+            width: 80%;
+            height: auto;
+            border-radius: 0.25em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
         footer {
             display: flex;
             align-items: center;
@@ -107,16 +166,32 @@
 </head>
 <body>
     <header>
-        <h1>Reconhecimento de Voz para Deficientes Auditivos</h1>
+        <div class="logo">
+            <img src="./voz.png" alt="Logo">
+            <h1>Reconhecimento de Voz para Deficientes Auditivos</h1>
+        </div>
+        <div class="menu">
+            <a href="./sobre.html"><img src="./sobre.png" alt="Sobre"> Sobre</a>
+            <a href="./contato.html"><img src="./contato.png" alt="Contato"> Contato</a>
+            <a href="./ajuda.html"><img src="./ajuda.png" alt="Ajuda"> Ajuda</a>
+        </div>
     </header>
     <main>
         <p>Este é um sistema de reconhecimento de voz para deficientes auditivos que utiliza técnicas de aprendizado de máquina e programação de software para identificar as principais dificuldades enfrentadas pelas pessoas com deficiência auditiva ao se comunicar, e implementar um sistema eficiente e preciso que possa ajudar essas pessoas a se comunicar mais facilmente.</p>
         <div id="buttons">
             <button id="start-record-btn"><img src="./microfone.png" alt="Microfone"> Iniciar Gravação</button>
             <button id="stop-record-btn" disabled><img src="./microfone 2.png" alt="Microfone"> Parar Gravação</button>
-            <button id="clear-btn"><img src="./vassoura.png" alt="Lixeira"> Limpar Texto</button>
+            <!-- Adicionando uma imagem ao botão limpar texto -->
+            <input type="image" src="./limpar-formato.png" alt="Limpar Texto" id="clear-btn">
         </div>
         <div id="output"></div>
+        <div class="images">
+            <img src="./" alt="Pessoa usando o sistema de reconhecimento de voz">
+            <img src="./sla.jpg" alt="Pessoa usando o sistema de reconhecimento de voz">
+        </div>
+        <div class="graph">
+            <img src="./grafico.png" alt="Gráfico mostrando a precisão do sistema de reconhecimento de voz">
+        </div>
     </main>
     <footer>
         <p>Criado por <strong>Cauã Dias</strong> em <strong>29/01/2024</strong></p>
