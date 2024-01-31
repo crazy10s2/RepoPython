@@ -5,6 +5,12 @@
     <title>Reconhecimento de Voz para Deficientes Auditivos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="icon" href="./voz.png">
+    <meta name="description" content="Um sistema de reconhecimento de voz para deficientes auditivos que utiliza técnicas de aprendizado de máquina e programação de software.">
+    <meta name="keywords" content="reconhecimento de voz, deficiência auditiva, aprendizado de máquina, programação de software, acessibilidade, comunicação">
+    <meta name="author" content="Cauã Dias"> 
     <style>
         * {
             box-sizing: border-box;
@@ -115,6 +121,13 @@
             background-color: #218838;
             transform: scale(1.1);
         }
+        main button#save-btn {
+            background-color: blueviolet;
+        }
+        main button#save-btn:hover {
+            background-color: rgb(121, 39, 199);
+            transform: scale(1.1);
+        }
         main #output {
             margin: 1.5em 0;
             padding: 1em;
@@ -177,17 +190,27 @@
         </div>
     </header>
     <main>
-        <p>Este é um sistema de reconhecimento de voz para deficientes auditivos que utiliza técnicas de aprendizado de máquina e programação de software para identificar as principais dificuldades enfrentadas pelas pessoas com deficiência auditiva ao se comunicar, e implementar um sistema eficiente e preciso que possa ajudar essas pessoas a se comunicar mais facilmente.</p>
-        <div id="buttons">
+        <section>
+            <p>Este é um sistema de reconhecimento de voz para deficientes auditivos que utiliza técnicas de aprendizado de máquina e programação de software para identificar as principais dificuldades enfrentadas pelas pessoas com deficiência auditiva ao se comunicar, e implementar um sistema eficiente e preciso que possa ajudar essas pessoas a se comunicar mais facilmente.</p>
+        </section>
+        <section id="buttons">
             <button id="start-record-btn"><img src="./microfone.png" alt="Microfone"> Iniciar Gravação</button>
             <button id="stop-record-btn" disabled><img src="./microfone 2.png" alt="Microfone"> Parar Gravação</button>
             <button id="clear-btn"><img src="./vassoura.png" alt="Limpar"> Limpar Texto</button>
-        </div>
+            <button id="save-btn"><img src="./salvar-arquivo (1).png" alt="Salvar"> Salvar Texto</button>
+        </section>
         <div id="output"></div>
-        <div class="images">
-            <img src="./pessoa_1.jpg" alt="Pessoa usando o sistema de reconhecimento de voz">
-            <img src="./pessoa2.jpg" alt="Pessoa usando o sistema de reconhecimento de voz">
-        </div>
+        <section class="images">
+            <figure>
+                <img src="./pessoa_1.jpg" alt="Pessoa usando o sistema de reconhecimento de voz">
+                <figcaption>Uma pessoa usando o sistema de reconhecimento de voz em um computador.</figcaption>
+            </figure>
+            <figure>
+                <img src="./pessoa2.jpg" alt="Pessoa usando o sistema de reconhecimento de voz">
+                <figcaption>Uma pessoa usando o sistema de reconhecimento de voz em um celular.</figcaption>
+            </figure>
+        </section>
+        <audio id="audio" controls hidden></audio>
     </main>
     <footer>
         <p>Criado por <strong>Cauã Dias</strong> em <strong>29/01/2024</strong></p>
@@ -198,11 +221,22 @@
         recognition.lang = 'pt-BR';
         recognition.interimResults = false;
         recognition.maxAlternatives = 1;
-
+    
         const startRecordBtn = document.querySelector('#start-record-btn');
         const stopRecordBtn = document.querySelector('#stop-record-btn');
         const clearBtn = document.querySelector('#clear-btn');
         const output = document.querySelector('#output');
+    
+        const saveBtn = document.querySelector('#save-btn');
+    
+        saveBtn.addEventListener('click', saveText);
+    
+        function saveText() {
+            let text = output.textContent;
+            let blob = new Blob([text], {type: 'text/plain;charset=utf-8'});
+            let filename = 'texto.txt';
+            saveAs(blob, filename);
+        }
 
         startRecordBtn.addEventListener('click', () => {
             recognition.start();
